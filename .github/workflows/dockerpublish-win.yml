@@ -36,7 +36,6 @@ jobs:
             image-name: $ENV:IMAGE_NAME
             dockerfile-location: Dockerfile-win
 
-      - name: show secret
-        run:  |
+     - name: show secret
+       run:  |
           Get-Content -Path "C:\Users\runneradmin\.docker\config.json"
-          
