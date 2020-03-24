@@ -27,11 +27,11 @@ jobs:
        run:  |
         echo "var is $IMAGE_NAME"
         echo "env is  $ENV:IMAGE_NAME"
-        type "C:\Users\runneradmin\.docker\config.json"
+        Get-Content -Path "C:\Users\runneradmin\.docker\config.json"
       
      - name: Build, Tag, Push
        uses: mattdavis0351/actions/docker-gpr@v1
        with:
             repo-token: ${{ secrets.GITHUB_TOKEN }}
-            image-name: $IMAGE_NAME
+            image-name: $ENV:IMAGE_NAME
             dockerfile-location: Dockerfile-win
