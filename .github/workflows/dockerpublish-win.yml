@@ -28,6 +28,7 @@ jobs:
         echo "var is $IMAGE_NAME"
         echo "env is  $ENV:IMAGE_NAME"
         echo "env context is " ${{ env.IMAGE_NAME}}
+        Get-Location
 
       
      - name: Build, Tag, Push
