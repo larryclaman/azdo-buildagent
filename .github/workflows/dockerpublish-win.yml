@@ -19,7 +19,7 @@ env:
 
 jobs:
 
-  buildandpush:
+  build:
     runs-on: windows-latest
 
     steps:
