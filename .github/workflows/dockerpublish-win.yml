@@ -31,9 +31,10 @@ jobs:
           echo "env context is " ${{ env.IMAGE_NAME}}
           echo "version ${{ github.ref }}"
           Get-Location
+          dir
 
       - name: Build
-        run: "docker build . --file $ENV:IMAGE_NAME"
+        run: "docker build . --file ${{ env.IMAGE_NAME}}"
 
       - name: Log into registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
