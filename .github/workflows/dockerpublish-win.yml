@@ -24,9 +24,10 @@ jobs:
 
     steps:
      - name: show env
-       run: echo "var is $IMAGE_NAME"
-       run: echo "env is  $ENV:IMAGE_NAME"
-       run: type "C:\Users\runneradmin\.docker\config.json"
+       run:  |
+        echo "var is $IMAGE_NAME"
+        echo "env is  $ENV:IMAGE_NAME"
+        type "C:\Users\runneradmin\.docker\config.json"
       
      - name: Build, Tag, Push
        uses: mattdavis0351/actions/docker-gpr@v1
