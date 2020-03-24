@@ -23,9 +23,11 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: Build, Tag, Push
-        uses: mattdavis0351/actions/docker-gpr@v1
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          image-name: ${{ IMAGE_NAME }}
-          dockerfile-location: Dockerfile-win
+      - echo "img name is $IMAGE_NAME "
+        echo "path is $ENV:PATH"
+        name: Build, Tag, Push
+          uses: mattdavis0351/actions/docker-gpr@v1
+          with:
+            repo-token: ${{ secrets.GITHUB_TOKEN }}
+            image-name: $IMAGE_NAME
+            dockerfile-location: Dockerfile-win
