@@ -20,30 +20,28 @@ env:
   DOCKERFILE: Dockerfile-windows
 
 jobs:
-
   build:
     runs-on: windows-latest
 
     steps:
-     - name: show env
-       run:  |
-        echo "var is $IMAGE_NAME"
-        echo "env is  $ENV:IMAGE_NAME"
-        echo "env context is " ${{ env.IMAGE_NAME}}
-        echo "version ${{ github.ref }}"
-        Get-Location
+      - name: show env
+        run: |
+          echo "var is $IMAGE_NAME"
+          echo "env is  $ENV:IMAGE_NAME"
+          echo "env context is " ${{ env.IMAGE_NAME}}
+          echo "version ${{ github.ref }}"
+          Get-Location
 
+      - name: Build
+        run: "docker build . --file $ENV:IMAGE_NAME"
 
-     - name: Build
-        run: docker build . --file $ENV:IMAGE_NAME
-
-     - name: Log into registry
+      - name: Log into registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
 
       - name: Push image
         run: |
           $IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/$ENV:IMAGE_NAME
-          
+
           # Change all uppercase to lowercase
           $IMAGE_ID=$IMAGE_ID.ToLower()
 
@@ -62,5 +60,3 @@ jobs:
           $VERSION="$ENV:GITHUB_RUN_ID"
           docker tag image $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION
-
-
