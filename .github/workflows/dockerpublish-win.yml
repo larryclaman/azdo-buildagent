@@ -24,11 +24,11 @@ jobs:
 
     steps:
      - name: show env
-       run: echo "image 1 and 2: $IMAGE_NAME  $ENV:IMAGE_NAME"
+       run: echo "image 1 and 2 $IMAGE_NAME  $ENV:IMAGE_NAME"
       
-      - name: Build, Tag, Push
-        uses: mattdavis0351/actions/docker-gpr@v1
-        with:
+     - name: Build, Tag, Push
+       uses: mattdavis0351/actions/docker-gpr@v1
+       with:
             repo-token: ${{ secrets.GITHUB_TOKEN }}
             image-name: $IMAGE_NAME
             dockerfile-location: Dockerfile-win
