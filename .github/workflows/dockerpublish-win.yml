@@ -24,6 +24,8 @@ jobs:
     runs-on: windows-latest
 
     steps:
+      - uses: actions/checkout@v2
+
       - name: show env
         run: |
           echo "var is $IMAGE_NAME"
