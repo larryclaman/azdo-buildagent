@@ -27,13 +27,14 @@ jobs:
        run:  |
         echo "var is $IMAGE_NAME"
         echo "env is  $ENV:IMAGE_NAME"
+        echo "env context is " ${{ env.IMAGE_NAME}}
 
       
      - name: Build, Tag, Push
        uses: mattdavis0351/actions/docker-gpr@v1
        with:
             repo-token: ${{ secrets.GITHUB_TOKEN }}
-            image-name: $ENV:IMAGE_NAME
+            image-name: ${{ env.IMAGE_NAME}}
             dockerfile-location: Dockerfile-win
 
      - name: show secret
