@@ -1,4 +1,4 @@
-name: Docker
+name: Dockerwin
 
 on:
   push:
@@ -18,11 +18,9 @@ env:
   IMAGE_NAME: azdobuildagentwin
 
 jobs:
-  # Run tests.
-  # See also https://docs.docker.com/docker-hub/builds/automated-testing/
-  test:
-    runs-on: windows-latest
 
+  buildandpush:
+    runs-on: windows-latest
 
     steps:
       - name: Build, Tag, Push
