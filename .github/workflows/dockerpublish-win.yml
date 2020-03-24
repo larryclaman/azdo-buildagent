@@ -23,9 +23,10 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - echo "img name is $IMAGE_NAME "
-        echo "path is $ENV:PATH"
-        name: Build, Tag, Push
+      name: show env
+      run: echo "image 1 and 2: $IMAGE_NAME  $ENV:IMAGE_NAME"
+      
+      name: Build, Tag, Push
           uses: mattdavis0351/actions/docker-gpr@v1
           with:
             repo-token: ${{ secrets.GITHUB_TOKEN }}
