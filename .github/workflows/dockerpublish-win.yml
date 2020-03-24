@@ -33,7 +33,7 @@ jobs:
           echo "env context is " ${{ env.IMAGE_NAME}}
           echo "version ${{ github.ref }}"
           Get-Location
-          Get-ChildItem
+
 
 
       - name: Build
@@ -46,7 +46,7 @@ jobs:
 
       - name: Push image
         run: |
-          $IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/$ENV:IMAGE_NAME
+          $IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/${{ env.IMAGE_NAME}}
 
           # Change all uppercase to lowercase
           $IMAGE_ID=$IMAGE_ID.ToLower()
@@ -64,5 +64,6 @@ jobs:
           #          echo VERSION=$VERSION
 
           $VERSION="$ENV:GITHUB_RUN_ID"
+          echo $VERSION
           docker tag image $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION
