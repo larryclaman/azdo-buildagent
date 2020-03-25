@@ -47,6 +47,12 @@ jobs:
       - name: Log into registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
 
+      - name: test push of nano server
+        run: |
+          docker tag mcr.microsoft.com/windows/nanoserver:1809 docker.pkg.github.com/larryclaman/azdo-buildagent/mynano:latest
+          docker image ls 
+          docker push docker.pkg.github.com/larryclaman/azdo-buildagent/mynano:latest
+
       - name: Push image
         run:  |
           echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
