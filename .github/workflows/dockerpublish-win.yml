@@ -49,6 +49,7 @@ jobs:
 
       - name: Push image
         run:  |
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
           $IMAGE_ID="docker.pkg.github.com/${{ github.repository }}/${{ env.IMAGE_NAME}}".ToLower()
           echo "imageid is $IMAGE_ID"
           $VERSION="$ENV:GITHUB_RUN_ID"
