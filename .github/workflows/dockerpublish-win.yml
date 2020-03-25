@@ -31,7 +31,8 @@ jobs:
           echo "var is $IMAGE_NAME"
           echo "env is  $ENV:IMAGE_NAME"
           echo "env context is " ${{ env.IMAGE_NAME}}
-          echo "version ${{ github.ref }}"
+          $VERSION="$ENV:GITHUB_RUN_ID"
+          echo "version is $VERSION"
           Get-Location
 
 
@@ -40,6 +41,7 @@ jobs:
         run: |
           docker build . --file Dockerfile-windows
           docker build . --file ${{ env.DOCKERFILE}}
+          docker image
 
       - name: Log into registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
@@ -66,5 +68,5 @@ jobs:
 
           $VERSION="$ENV:GITHUB_RUN_ID"
           echo "version is $VERSION"
-          docker tag image $IMAGE_ID:$VERSION
-          docker push $IMAGE_ID:$VERSION
+          # docker tag image $IMAGE_ID:$VERSION
+          # docker push $IMAGE_ID:$VERSION
