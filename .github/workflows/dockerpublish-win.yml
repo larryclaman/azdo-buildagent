@@ -50,6 +50,7 @@ jobs:
 
           # Change all uppercase to lowercase
           $IMAGE_ID=$IMAGE_ID.ToLower()
+          echo "image_id is $IMAGE_ID ""
 
           # Strip git ref prefix from version
           #          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
@@ -64,6 +65,6 @@ jobs:
           #          echo VERSION=$VERSION
 
           $VERSION="$ENV:GITHUB_RUN_ID"
-          echo $VERSION
+          echo "version is $VERSION"
           docker tag image $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION
