@@ -43,6 +43,7 @@ jobs:
           docker build . --file ${{ env.DOCKERFILE}} -t wipimage
           docker image ls
 
+
       - name: Log into registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
 
@@ -54,7 +55,7 @@ jobs:
           echo "version is $VERSION"
           $FULLTAG="$IMAGE_ID:$VERSION"
           echo "fulltag is $FULLTAG"
-          docker tag wipimage  "$FULLTAG"
+          # docker tag wipimage  "$FULLTAG"
           docker image ls
 
           
