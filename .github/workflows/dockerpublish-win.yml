@@ -39,8 +39,8 @@ jobs:
 
       - name: Build
         run: |
-          docker build . --file Dockerfile-windows
-          docker build . --file ${{ env.DOCKERFILE}}
+          # docker build . --file Dockerfile-windows
+          docker build . --file ${{ env.DOCKERFILE}} -t wipimage
           docker image ls
 
       - name: Log into registry
@@ -52,5 +52,6 @@ jobs:
           echo "imageid is $IMAGE_ID"
           $VERSION="$ENV:GITHUB_RUN_ID"
           echo "version is $VERSION"
+          docker tag wipimage $IMAGE_ID:$VERSION
 
           
