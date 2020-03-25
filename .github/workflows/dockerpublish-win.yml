@@ -53,8 +53,10 @@ jobs:
           echo "imageid is $IMAGE_ID"
           $VERSION="$ENV:GITHUB_RUN_ID"
           echo "version is $VERSION"
-          $FULLTAG="$IMAGE_ID:$VERSION"
+          $FULLTAG="${IMAGE_ID}:${VERSION}"
           echo "fulltag is $FULLTAG"
           docker image ls
+          docker tag wipimage $FULLTAG
+          # docker push $FULLTAG
 
           
