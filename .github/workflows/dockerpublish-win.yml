@@ -52,6 +52,5 @@ jobs:
           echo "imageid is $IMAGE_ID"
           $VERSION="$ENV:GITHUB_RUN_ID"
           echo "version is $VERSION"
-          docker tag image $IMAGE_ID:$VERSION
-          docker push $IMAGE_ID:$VERSION
+
           
