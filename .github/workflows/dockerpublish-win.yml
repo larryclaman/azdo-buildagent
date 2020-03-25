@@ -41,7 +41,7 @@ jobs:
         run: |
           docker build . --file Dockerfile-windows
           docker build . --file ${{ env.DOCKERFILE}}
-          docker image
+          docker image ls
 
       - name: Log into registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
@@ -50,5 +50,8 @@ jobs:
         run:  |
           $IMAGE_ID="docker.pkg.github.com/${{ github.repository }}/${{ env.IMAGE_NAME}}".ToLower()
           echo "imageid is $IMAGE_ID"
-
+          $VERSION="$ENV:GITHUB_RUN_ID"
+          echo "version is $VERSION"
+          docker tag image $IMAGE_ID:$VERSION
+          docker push $IMAGE_ID:$VERSION
           
