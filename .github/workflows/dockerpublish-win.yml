@@ -55,7 +55,7 @@ jobs:
           echo "version is $VERSION"
           $FULLTAG="$IMAGE_ID:$VERSION"
           echo "fulltag is $FULLTAG"
-          # docker tag wipimage  "$FULLTAG"
+          ## docker tag wipimage  "$FULLTAG"
           docker image ls
 
           
