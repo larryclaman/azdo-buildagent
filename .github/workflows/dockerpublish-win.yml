@@ -50,6 +50,4 @@ jobs:
         run: |
           $IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/${{ env.IMAGE_NAME}}
           $IMAGE_ID=$IMAGE_ID.ToLower()
-          echo "image_id is $IMAGE_ID ""
-          $VERSION="$ENV:GITHUB_RUN_ID"
-          echo "version is $VERSION"
+
